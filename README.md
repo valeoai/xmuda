@@ -13,10 +13,10 @@ The code will be published soon.
 If you find this code useful for your research, please cite our [paper](https://arxiv.org/abs/1911.12676):
 
 ```
-@article{jaritz2019xmuda,
+@inproceedings{jaritz2019xmuda,
 	title={{xMUDA}: Cross-Modal Unsupervised Domain Adaptation for {3D} Semantic Segmentation},
 	author={Jaritz, Maximilian and Vu, Tuan-Hung and de Charette, Raoul and Wirbel, Emilie and P{\'e}rez, Patrick},
-	journal={CVPR},
+	booktitle={CVPR},
 	year={2020}
 }
 ```
