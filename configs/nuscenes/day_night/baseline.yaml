@@ -1,0 +1,37 @@
+MODEL_2D:
+  TYPE: "UNetResNet34"
+MODEL_3D:
+  TYPE: "SCN"
+DATASET_SOURCE:
+  TYPE: "NuScenesSCN"
+  TRAIN: ("train_day",)
+  NuScenesSCN:
+    preprocess_dir: "/datasets_local/datasets_mjaritz/nuscenes_preprocess/preprocess"
+    nuscenes_dir: "/datasets_local/datasets_mjaritz/nuscenes_preprocess"  # only front cam images are needed
+DATASET_TARGET:
+  TYPE: "NuScenesSCN"
+  VAL: ("val_night",)
+  TEST: ("test_night",)
+  NuScenesSCN:
+    preprocess_dir: "/datasets_local/datasets_mjaritz/nuscenes_preprocess/preprocess"
+    nuscenes_dir: "/datasets_local/datasets_mjaritz/nuscenes_preprocess"  # only front cam images are needed
+DATALOADER:
+  NUM_WORKERS: 4
+OPTIMIZER:
+  TYPE: "Adam"
+  BASE_LR: 0.001
+SCHEDULER:
+  TYPE: "MultiStepLR"
+  MultiStepLR:
+    gamma: 0.1
+    milestones: (80000, 90000)
+  MAX_ITERATION: 100000
+TRAIN:
+  BATCH_SIZE: 8
+  SUMMARY_PERIOD: 50
+  CHECKPOINT_PERIOD: 5000
+  CLASS_WEIGHTS: [2.68678412, 4.36182969, 5.47896839, 3.89026883, 1.]
+VAL:
+  BATCH_SIZE: 32
+  PERIOD: 5000
+#OUTPUT_DIR: "path/to/output/directory/@"  #  @ will be replaced with config path, e.g. nuscenes/usa_singapore/xmuda

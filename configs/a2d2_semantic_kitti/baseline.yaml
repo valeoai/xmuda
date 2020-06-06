@@ -1,0 +1,39 @@
+MODEL_2D:
+  TYPE: "UNetResNet34"
+  NUM_CLASSES: 10
+MODEL_3D:
+  TYPE: "SCN"
+  NUM_CLASSES: 10
+DATASET_SOURCE:
+  TYPE: "A2D2SCN"
+  TRAIN: ("train",)
+  A2D2SCN:
+    preprocess_dir: "/datasets_local/datasets_mjaritz/a2d2_preprocess"
+DATASET_TARGET:
+  TYPE: "SemanticKITTISCN"
+  VAL: ("val",)
+  TEST: ("test",)
+  SemanticKITTISCN:
+    preprocess_dir: "/datasets_local/datasets_mjaritz/semantic_kitti_preprocess/preprocess"
+    semantic_kitti_dir: "/datasets_local/datasets_mjaritz/semantic_kitti_preprocess"
+DATALOADER:
+  NUM_WORKERS: 4
+OPTIMIZER:
+  TYPE: "Adam"
+  BASE_LR: 0.001
+SCHEDULER:
+  TYPE: "MultiStepLR"
+  MultiStepLR:
+    gamma: 0.1
+    milestones: (80000, 90000)
+  MAX_ITERATION: 100000
+TRAIN:
+  BATCH_SIZE: 8
+  SUMMARY_PERIOD: 50
+  CHECKPOINT_PERIOD: 5000
+  CLASS_WEIGHTS: [1.89090012, 2.0585112, 3.1970535, 3.1111633, 1., 2.93751704, 1.92053733,
+                  1.47886874, 1.04654198, 1.78266561]
+VAL:
+  BATCH_SIZE: 8
+  PERIOD: 5000
+#OUTPUT_DIR: "path/to/output/directory/@"  #  @ will be replaced with config path, e.g. nuscenes/usa_singapore/xmuda
