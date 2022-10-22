@@ -1,3 +1,5 @@
+## [Updated code](https://github.com/valeoai/xmuda_journal) from our TPAMI paper.
+
 # xMUDA: Cross-Modal Unsupervised Domain Adaptation for 3D Semantic Segmentation
 
 Official code for the paper.
